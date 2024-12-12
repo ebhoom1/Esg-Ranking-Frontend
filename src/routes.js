@@ -28,12 +28,12 @@ const routes = [
     component: <MainDashboard />,
   },
   {
-    name: 'NFT Marketplace',
+    name: 'Forms',
     layout: '/admin',
     path: '/nft-marketplace',
     icon: (
       <Icon
-        as={MdOutlineShoppingCart}
+        as={MdBarChart}
         width="20px"
         height="20px"
         color="inherit"

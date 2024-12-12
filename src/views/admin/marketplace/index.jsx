@@ -1,305 +1,157 @@
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-import React from "react";
-
-// Chakra imports
+import React, { useState } from "react";
 import {
   Box,
   Button,
   Flex,
-  Grid,
-  Link,
+  Input,
+  Select,
   Text,
-  useColorModeValue,
-  SimpleGrid,
+  VStack,
+  Progress,
+  HStack,
+  Circle,
 } from "@chakra-ui/react";
 
-// Custom components
-import Banner from "views/admin/marketplace/components/Banner";
-import TableTopCreators from "views/admin/marketplace/components/TableTopCreators";
-import HistoryItem from "views/admin/marketplace/components/HistoryItem";
-import NFT from "components/card/NFT";
-import Card from "components/card/Card.js";
+export default function ESGForm() {
+  const [step, setStep] = useState(1);
 
-// Assets
-import Nft1 from "assets/img/nfts/Nft1.png";
-import Nft2 from "assets/img/nfts/Nft2.png";
-import Nft3 from "assets/img/nfts/Nft3.png";
-import Nft4 from "assets/img/nfts/Nft4.png";
-import Nft5 from "assets/img/nfts/Nft5.png";
-import Nft6 from "assets/img/nfts/Nft6.png";
-import Avatar1 from "assets/img/avatars/avatar1.png";
-import Avatar2 from "assets/img/avatars/avatar2.png";
-import Avatar3 from "assets/img/avatars/avatar3.png";
-import Avatar4 from "assets/img/avatars/avatar4.png";
-import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators.json";
-import { tableColumnsTopCreators } from "views/admin/marketplace/variables/tableColumnsTopCreators";
+  const nextStep = () => {
+    if (step < 6) setStep(step + 1);
+  };
 
-export default function Marketplace() {
-  // Chakra Color Mode
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const textColorBrand = useColorModeValue("brand.500", "white");
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
   return (
-    <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
-      {/* Main Fields */}
-      <Grid
-        mb='20px'
-        gridTemplateColumns={{ xl: "repeat(3, 1fr)", "2xl": "1fr 0.46fr" }}
-        gap={{ base: "20px", xl: "20px" }}
-        display={{ base: "block", xl: "grid" }}>
-        <Flex
-          flexDirection='column'
-          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
-          <Banner />
-          <Flex direction='column'>
-            <Flex
-              mt='45px'
-              mb='20px'
-              justifyContent='space-between'
-              direction={{ base: "column", md: "row" }}
-              align={{ base: "start", md: "center" }}>
-              <Text color={textColor} fontSize='2xl' ms='24px' fontWeight='700'>
-                Trending NFTs
-              </Text>
-              <Flex
-                align='center'
-                me='20px'
-                ms={{ base: "24px", md: "0px" }}
-                mt={{ base: "20px", md: "0px" }}>
-                <Link
-                  color={textColorBrand}
-                  fontWeight='500'
-                  me={{ base: "34px", md: "44px" }}
-                  to='#art'>
-                  Art
-                </Link>
-                <Link
-                  color={textColorBrand}
-                  fontWeight='500'
-                  me={{ base: "34px", md: "44px" }}
-                  to='#music'>
-                  Music
-                </Link>
-                <Link
-                  color={textColorBrand}
-                  fontWeight='500'
-                  me={{ base: "34px", md: "44px" }}
-                  to='#collectibles'>
-                  Collectibles
-                </Link>
-                <Link color={textColorBrand} fontWeight='500' to='#sports'>
-                  Sports
-                </Link>
-              </Flex>
-            </Flex>
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px'>
-              <NFT
-                name='Abstract Colors'
-                author='By Esthera Jackson'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft1}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-              <NFT
-                name='ETH AI Brain'
-                author='By Nick Wilson'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft2}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-              <NFT
-                name='Mesh Gradients '
-                author='By Will Smith'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft3}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-            </SimpleGrid>
-            <Text
-              mt='45px'
-              mb='36px'
-              color={textColor}
-              fontSize='2xl'
-              ms='24px'
-              fontWeight='700'>
-              Recently Added
-            </Text>
-            <SimpleGrid
-              columns={{ base: 1, md: 3 }}
-              gap='20px'
-              mb={{ base: "20px", xl: "0px" }}>
-              <NFT
-                name='Swipe Circles'
-                author='By Peter Will'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft4}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-              <NFT
-                name='Colorful Heaven'
-                author='By Mark Benjamin'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft5}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-              <NFT
-                name='3D Cubes Art'
-                author='By Manny Gates'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft6}
-                currentbid='0.91 ETH'
-                download='#'
-              />
-            </SimpleGrid>
-          </Flex>
-        </Flex>
-        <Flex
-          flexDirection='column'
-          gridArea={{ xl: "1 / 3 / 2 / 4", "2xl": "1 / 2 / 2 / 3" }}>
-          <Card px='0px' mb='20px'>
-            <TableTopCreators
-              tableData={tableDataTopCreators}
-              columnsData={tableColumnsTopCreators}
-            />
-          </Card>
-          <Card p='0px'>
-            <Flex
-              align={{ sm: "flex-start", lg: "center" }}
-              justify='space-between'
-              w='100%'
-              px='22px'
-              py='18px'>
-              <Text color={textColor} fontSize='xl' fontWeight='600'>
-                History
-              </Text>
-              <Button variant='action'>See all</Button>
-            </Flex>
+    <Flex direction="column" align="center" p={5}>
+      <Box position="sticky" top={0} zIndex={10} p={4} width="100%">
+        <Text fontSize="2xl" fontWeight="bold" mt={10} mb={4} textAlign="center">
+          ESG Information Form
+        </Text>
 
-            <HistoryItem
-              name='Colorful Heaven'
-              author='By Mark Benjamin'
-              date='30s ago'
-              image={Nft5}
-              price='0.91 ETH'
-            />
-            <HistoryItem
-              name='Abstract Colors'
-              author='By Esthera Jackson'
-              date='58s ago'
-              image={Nft1}
-              price='0.91 ETH'
-            />
-            <HistoryItem
-              name='ETH AI Brain'
-              author='By Nick Wilson'
-              date='1m ago'
-              image={Nft2}
-              price='0.91 ETH'
-            />
-            <HistoryItem
-              name='Swipe Circles'
-              author='By Peter Will'
-              date='1m ago'
-              image={Nft4}
-              price='0.91 ETH'
-            />
-            <HistoryItem
-              name='Mesh Gradients '
-              author='By Will Smith'
-              date='2m ago'
-              image={Nft3}
-              price='0.91 ETH'
-            />
-            <HistoryItem
-              name='3D Cubes Art'
-              author='By Manny Gates'
-              date='3m ago'
-              image={Nft6}
-              price='0.91 ETH'
-            />
-          </Card>
+        {/* Progress Bar with Indicators */}
+        <Flex align="center" justify="center" mb={6}>
+  {[...Array(6)].map((_, index) => (
+    <HStack key={index} spacing={4} align="center">
+      <Circle
+        size="30px"
+        bg={index + 1 <= step ? "green.500" : "gray.300"} // Highlight all steps up to the current one
+        color="white"
+      >
+        {index + 1}
+      </Circle>
+      {index < 5 && (
+        <Box
+          width="50px"
+          height="4px"
+          bg={index + 1 < step ? "green.500" : "gray.300"} // Highlight lines connecting completed steps
+        />
+      )}
+    </HStack>
+  ))}
+</Flex>
+
+
+        <Text mb={4} textAlign="center">Step {step} of 6</Text>
+      </Box>
+
+      <Box width="80%" p={5} boxShadow="lg" borderRadius="md" bg="white">
+        {step === 1 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Environmental Information</Text>
+
+            <Input placeholder="Scope 1 Emissions (tons/year)" />
+            <Input placeholder="Scope 2 Emissions (tons/year)" />
+            <Input placeholder="Scope 3 Emissions (tons/year)" />
+            <Input placeholder="Percentage reduction in emissions" />
+            <Input placeholder="Total Energy Consumed (kWh/year)" />
+            <Input placeholder="Percentage of Energy from Renewable Sources" />
+            <Input placeholder="Renewable Energy Generation Capacity" />
+            <Input placeholder="Total Water Consumption (liters/year)" />
+            <Input placeholder="Percentage of Water Recycled/Recovered" />
+            <Input placeholder="Total Waste Generated (tons/year)" />
+            <Input placeholder="Percentage of Waste Recycled/Disposed Safely" />
+            <Input placeholder="Emissions of NOx, SOx, and PM2.5 (tons/year)" />
+          </VStack>
+        )}
+
+        {step === 2 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Social Information</Text>
+
+            <Input placeholder="Total Number of Employees" />
+            <Input placeholder="Diversity Metrics (e.g., % women, marginalized groups)" />
+            <Input placeholder="Average Training Hours per Employee" />
+            <Input placeholder="CSR Spend (₹/year)" />
+            <Input placeholder="CSR Initiative Details" />
+            <Input placeholder="Lost-Time Injury Frequency Rate (LTIFR)" />
+            <Input placeholder="Total Workers Trained Annually" />
+          </VStack>
+        )}
+
+        {step === 3 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Governance Information</Text>
+
+            <Input placeholder="Total Board Members" />
+            <Input placeholder="Percentage of Women or Independent Directors" />
+            <Input placeholder="Annual Board Evaluations Conducted (Yes/No)" />
+            <Input placeholder="Anti-Corruption Policies in Place (Yes/No)" />
+            <Input placeholder="Whistleblower Mechanism (Yes/No)" />
+            <Input placeholder="Number of Incidents Reported" />
+            <Input placeholder="Regulatory Compliance (Yes/No)" />
+          </VStack>
+        )}
+
+        {step === 4 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Net Zero and Policy Tracking</Text>
+
+            <Input placeholder="Target Year for Achieving Net Zero" />
+            <Input placeholder="Participation in Subsidy Programs (Yes/No)" />
+            <Input placeholder="Details of Subsidies Received" />
+            <Input placeholder="Number of Greenfield/Brownfield Projects" />
+          </VStack>
+        )}
+
+        {step === 5 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Uploads and Attachments</Text>
+
+            <Input type="file" placeholder="Upload ESG Reports" />
+            <Input type="file" placeholder="Energy Audit Reports" />
+            <Input type="file" placeholder="Water Audit Reports" />
+            <Input type="file" placeholder="Waste Management Plans" />
+          </VStack>
+        )}
+
+        {step === 6 && (
+          <VStack spacing={4}>
+            <Text fontSize="lg" fontWeight="bold">Review and Submit</Text>
+            <Text>Review all entered data before submitting the form.</Text>
+            <Button colorScheme="blue">Submit</Button>
+          </VStack>
+        )}
+
+        {/* Navigation Buttons */}
+        <Flex justify="space-between" mt={6}>
+          <Button
+            colorScheme="gray"
+            onClick={prevStep}
+            isDisabled={step === 1}
+          >
+            Previous
+          </Button>
+          <Button
+            colorScheme="green"
+            onClick={nextStep}
+            isDisabled={step === 6}
+          >
+            Next
+          </Button>
         </Flex>
-      </Grid>
-      {/* Delete Product */}
-    </Box>
+      </Box>
+    </Flex>
   );
 }
